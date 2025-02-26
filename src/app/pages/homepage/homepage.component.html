@@ -12,8 +12,8 @@
   <p>{{ post.postedBy }}</p>
   <div>{{ post.date }}</div>
   <div>
-    <button disabled>{{ post.likeCount }} likes</button>
-    <button disabled>{{ post.viewCount }} views</button>
+    <button>{{ post.likeCount }} likes</button>
+    <button>{{ post.viewCount }} views</button>
   </div>
   <button routerLink="/post-view-only/{{ post.id }}">View Post</button>
   <br />

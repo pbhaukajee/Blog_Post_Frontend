@@ -34,4 +34,19 @@ export class PostViewOnlyComponent implements OnInit {
         });
     }
   }
+
+  likePost(): void {
+    this.postService.likePost(this.postId).subscribe(
+      (result: string) => {
+        if (result === 'success') {
+          alert('Post liked successfully');
+          this.getPostById();
+        }
+      },
+      (error) => {
+        console.error('Error liking post:', error);
+        alert('Failed to like the post. Please try again later.');
+      },
+    );
+  }
 }

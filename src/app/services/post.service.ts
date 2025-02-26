@@ -38,4 +38,14 @@ export class PostService {
       this.httpOptions,
     );
   }
+
+  likePost(postId: number): Observable<string> {
+    return this.http.patch<string>(
+      this.api + `/posts/${postId}/like`,
+      this.httpOptions,
+      {
+        responseType: 'text' as 'json',
+      },
+    );
+  }
 }

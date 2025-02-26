@@ -12,10 +12,25 @@
   <p>{{ postData.postedBy }}</p>
   <div>{{ postData.date }}</div>
   <div>
-    <button>{{ postData.likeCount }} likes</button>
+    <button (click)="likePost()">{{ postData.likeCount }} likes</button>
     <button>{{ postData.viewCount }} views</button>
   </div>
 
   <br />
   <br />
+</div>
+
+<div>
+  <h4>Comments</h4>
+  <div>
+    <form [formGroup]="commentsForm">
+      <label>Comment</label>
+      <textarea formControlName="comment"></textarea>
+      <br />
+      <label>Posted By</label>
+      <input formControlName="postedBy" />
+      <br />
+      <button (click)="postComment()">Post</button>
+    </form>
+  </div>
 </div>

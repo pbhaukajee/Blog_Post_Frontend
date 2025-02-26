@@ -35,7 +35,7 @@ export class NewPostFormComponent implements OnInit {
 
   createPost() {
     if (this.newPostForm.invalid) {
-      return; // Don't proceed if the form is invalid
+      return;
     }
 
     const post = this.newPostForm.value;
