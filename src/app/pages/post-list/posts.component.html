@@ -1,0 +1,17 @@
+<button routerLink="/new-post-form">Create New Post</button>
+<button routerLink="/">Logout</button>
+<h1>List of Posts</h1>
+<div *ngFor="let post of postList">
+  <div>image: {{ post.img }}</div>
+  <h3>{{ post.title }}</h3>
+  <p>{{ post.content }}</p>
+  <p>{{ post.postedBy }}</p>
+  <div>{{ post.date }}</div>
+  <div>
+    <button>{{ post.likeCount }} likes</button>
+    <button>{{ post.viewCount }} views</button>
+  </div>
+  <button routerLink="/individual-post/{{ post.id }}">View Post</button>
+  <br />
+  <br />
+</div>

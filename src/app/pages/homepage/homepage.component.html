@@ -1,0 +1,21 @@
+<div>
+  <h1>Blog Post</h1>
+  <button routerLink="/login">Login</button>
+  <button routerLink="signup">Sign Up</button>
+  <h2>List of Posts</h2>
+</div>
+
+<div *ngFor="let post of postList">
+  <div>image: {{ post.img }}</div>
+  <h3>{{ post.title }}</h3>
+  <p>{{ post.content }}</p>
+  <p>{{ post.postedBy }}</p>
+  <div>{{ post.date }}</div>
+  <div>
+    <button disabled>{{ post.likeCount }} likes</button>
+    <button disabled>{{ post.viewCount }} views</button>
+  </div>
+  <button routerLink="/post-view-only/{{ post.id }}">View Post</button>
+  <br />
+  <br />
+</div>

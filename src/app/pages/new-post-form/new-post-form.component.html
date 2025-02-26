@@ -1,0 +1,19 @@
+<div class="blog-form">
+  <form [formGroup]="newPostForm">
+    <label>Blog Title</label>
+    <input type="text" id="title" formControlName="title" />
+    <br /><br />
+    <label>Content</label>
+    <textarea type="text" id="content" formControlName="content"></textarea>
+    <br /><br />
+    <label>Upload Image</label>
+    <input type="text" id="img" formControlName="img" />
+    <br /><br />
+    <label>Posted By</label>
+    <input type="text" id="postedBy" formControlName="postedBy" />
+    <br /><br />
+    <button [disabled]="newPostForm.invalid" (click)="createPost()">
+      Create New Post
+    </button>
+  </form>
+</div>

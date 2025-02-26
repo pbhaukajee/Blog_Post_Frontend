@@ -1,0 +1,15 @@
+<button routerLink="/">View All Posts</button>
+<div *ngIf="postData">
+  <div>image: {{ postData.img }}</div>
+  <h3>{{ postData.title }}</h3>
+  <p>{{ postData.content }}</p>
+  <p>{{ postData.postedBy }}</p>
+  <div>{{ postData.date }}</div>
+  <div>
+    <button>{{ postData.likeCount }} likes</button>
+    <button>{{ postData.viewCount }} views</button>
+  </div>
+
+  <br />
+  <br />
+</div>
