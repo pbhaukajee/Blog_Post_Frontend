@@ -25,9 +25,11 @@
   <div *ngFor="let comment of commentList">
     <p>{{ comment.comment }}</p>
     <p>{{ comment.postedBy }}</p>
+    <button>Delete</button>
   </div>
   <br />
   <br />
+  <button>Delete</button>
   <div>
     <form [formGroup]="commentsForm">
       <label>Comment</label>

@@ -46,20 +46,24 @@ export class IndividualPostComponent implements OnInit {
 
   postComment() {
     const comments = this.commentsForm.value;
-    this.commentService.createComment(this.postId, comments).subscribe(
-      (result) => {
-        console.log(result);
-        alert('Comment posted successfully!');
+    if (!comments.comment) {
+      alert('Please provide a comment before posting!');
+    } else {
+      this.commentService.createComment(this.postId, comments).subscribe(
+        (result) => {
+          console.log(result);
+          alert('Comment posted successfully!');
 
-        this.commentsForm.reset();
+          this.commentsForm.reset();
 
-        this.getCommentsByPost();
-      },
-      (error) => {
-        console.error('Error posting comment:', error);
-        alert('Failed to post a comment.');
-      },
-    );
+          this.getCommentsByPost();
+        },
+        (error) => {
+          console.error('Error posting comment:', error);
+          alert('Failed to post a comment.');
+        },
+      );
+    }
   }
 
   getCommentsByPost() {
