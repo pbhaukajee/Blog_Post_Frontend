@@ -17,12 +17,18 @@ export class PostService {
 
   constructor(private http: HttpClient) {}
 
-  createNewPost(post: PostData): Observable<PostData> {
+  savePost(post: PostData): Observable<PostData> {
     return this.http.post<PostData>(
       this.api.concat('/posts'),
       post,
       this.httpOptions,
     );
+  }
+
+  updatePost(postId: number, post: PostData): Observable<string> {
+    return this.http.put<string>(this.api + `/posts/${postId}`, post, {
+      responseType: 'text' as 'json',
+    });
   }
 
   getAllPosts(): Observable<PostData[]> {

@@ -15,7 +15,9 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'posts', component: PostListComponent },
   { path: 'new-post-form', component: NewPostFormComponent },
+  { path: 'update/:id', component: NewPostFormComponent },
   { path: 'individual-post/:id', component: IndividualPostComponent },
+
   { path: 'post-view-only/:id', component: PostViewOnlyComponent },
   { path: 'search-by-title', component: SearchByTitleComponent },
   {

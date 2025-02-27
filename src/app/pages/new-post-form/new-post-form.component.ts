@@ -6,8 +6,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post.service';
+import { PostData } from '../models/post-data';
 
 @Component({
   selector: 'app-new-post-form',
@@ -18,11 +19,13 @@ import { PostService } from '../../services/post.service';
 })
 export class NewPostFormComponent implements OnInit {
   newPostForm: FormGroup;
+  postId: number;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private postService: PostService,
+    private route: ActivatedRoute,
   ) {}
   ngOnInit(): void {
     this.newPostForm = this.formBuilder.group({
@@ -31,17 +34,33 @@ export class NewPostFormComponent implements OnInit {
       postedBy: ['', Validators.required],
       img: ['', Validators.required],
     });
+
+    //Add particular post data in the form
+    this.postId = parseInt(this.route.snapshot.paramMap.get('id'));
+    if (this.postId) {
+      this.postService.getPostById(this.postId).subscribe((post: PostData) => {
+        this.newPostForm.patchValue(post);
+      });
+    }
   }
 
-  createPost() {
+  savePost() {
     if (this.newPostForm.invalid) {
       return;
     }
-
     const post = this.newPostForm.value;
-    this.postService.createNewPost(post).subscribe((result) => {
-      console.log(result);
-      this.router.navigate(['/posts']);
-    });
+    if (this.postId) {
+      this.postService
+        .updatePost(this.postId, post)
+        .subscribe((result: string) => {
+          console.log(result);
+          this.router.navigate([`/individual-post/${this.postId}`]);
+        });
+    } else {
+      this.postService.savePost(post).subscribe((result) => {
+        console.log(result);
+        this.router.navigate(['/posts']);
+      });
+    }
   }
 }

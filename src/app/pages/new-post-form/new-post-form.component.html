@@ -12,8 +12,6 @@
     <label>Posted By</label>
     <input type="text" id="postedBy" formControlName="postedBy" />
     <br /><br />
-    <button [disabled]="newPostForm.invalid" (click)="createPost()">
-      Create New Post
-    </button>
+    <button [disabled]="newPostForm.invalid" (click)="savePost()">Save</button>
   </form>
 </div>
