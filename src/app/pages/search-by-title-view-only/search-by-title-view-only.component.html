@@ -1,12 +1,13 @@
 <div>
-  <h1>Blog Post</h1>
-  <button routerLink="/search-by-title-view-only">Search Post</button>
-  <button routerLink="/login">Login</button>
-  <button routerLink="signup">Sign Up</button>
-  <h2>List of Posts</h2>
+  <label>Search by Title</label>
+  <input [(ngModel)]="title" />
+  <button (click)="searchPostByTitle()">Search</button>
+</div>
+<div *ngIf="searchPerformed && noPostFound">
+  <p>No post found!!</p>
 </div>
 
-<div *ngFor="let post of postList">
+<div *ngFor="let post of postData">
   <div>image: {{ post.img }}</div>
   <h3>{{ post.title }}</h3>
   <p>{{ post.content }}</p>

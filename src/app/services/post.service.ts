@@ -39,6 +39,13 @@ export class PostService {
     );
   }
 
+  searchPostByTitle(title: string): Observable<PostData[]> {
+    return this.http.get<PostData[]>(
+      this.api + `/posts/search/${title}`,
+      this.httpOptions,
+    );
+  }
+
   likePost(postId: number): Observable<string> {
     return this.http.patch<string>(
       this.api + `/posts/${postId}/like`,

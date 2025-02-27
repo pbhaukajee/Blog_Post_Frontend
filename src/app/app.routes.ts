@@ -6,6 +6,8 @@ import { NewPostFormComponent } from './pages/new-post-form/new-post-form.compon
 import { PostListComponent } from './pages/post-list/posts.component';
 import { IndividualPostComponent } from './pages/individual-post/individual-post.component';
 import { PostViewOnlyComponent } from './pages/post-view-only/post-view-only.component';
+import { SearchByTitleComponent } from './pages/search-by-title/search-by-title.component';
+import { SearchByTitleViewOnlyComponent } from './pages/search-by-title-view-only/search-by-title-view-only.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -15,4 +17,9 @@ export const routes: Routes = [
   { path: 'new-post-form', component: NewPostFormComponent },
   { path: 'individual-post/:id', component: IndividualPostComponent },
   { path: 'post-view-only/:id', component: PostViewOnlyComponent },
+  { path: 'search-by-title', component: SearchByTitleComponent },
+  {
+    path: 'search-by-title-view-only',
+    component: SearchByTitleViewOnlyComponent,
+  },
 ];
