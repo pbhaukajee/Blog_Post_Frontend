@@ -41,7 +41,7 @@ export class NewPostFormComponent implements OnInit {
     const post = this.newPostForm.value;
     this.postService.createNewPost(post).subscribe((result) => {
       console.log(result);
-      this.router.navigate(['']);
+      this.router.navigate(['/posts']);
     });
   }
 }

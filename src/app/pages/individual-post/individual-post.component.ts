@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { PostData } from '../models/post-data';
 import { CommonModule } from '@angular/common';
@@ -23,12 +23,14 @@ import { CommentSection } from '../models/comment-section';
 export class IndividualPostComponent implements OnInit {
   postId: number;
   postData: PostData;
+  postList: PostData[] = [];
   commentsForm: FormGroup;
   commentList: CommentSection[] = [];
 
   constructor(
     private postService: PostService,
     private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
     private commentService: CommentService,
   ) {}
@@ -106,5 +108,23 @@ export class IndividualPostComponent implements OnInit {
         alert('Failed to like the post.');
       },
     );
+  }
+
+  getAllpost(): void {
+    this.postService.getAllPosts().subscribe((postList: PostData[]) => {
+      this.postList = postList;
+    });
+  }
+
+  deletePost(postId: number): void {
+    const confirmation = confirm('Are you sure you want to delete this post?');
+    if (confirmation) {
+      this.postService.deletPostById(postId).subscribe((result: string) => {
+        if (result === 'success') {
+          alert('Post deleted successfully');
+          this.router.navigate(['/posts']);
+        }
+      });
+    }
   }
 }

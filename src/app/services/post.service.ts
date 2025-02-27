@@ -55,4 +55,10 @@ export class PostService {
       },
     );
   }
+
+  deletPostById(postId: number): Observable<string> {
+    return this.http.delete<string>(this.api + `/posts/${postId}`, {
+      responseType: 'text' as 'json',
+    });
+  }
 }
