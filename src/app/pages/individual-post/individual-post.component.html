@@ -22,6 +22,12 @@
 
 <div>
   <h4>Comments</h4>
+  <div *ngFor="let comment of commentList">
+    <p>{{ comment.comment }}</p>
+    <p>{{ comment.postedBy }}</p>
+  </div>
+  <br />
+  <br />
   <div>
     <form [formGroup]="commentsForm">
       <label>Comment</label>

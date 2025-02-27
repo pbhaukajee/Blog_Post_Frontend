@@ -26,11 +26,18 @@ export class CommentService {
     };
 
     return this.http.post<CommentSection>(
-      this.api.concat('/posts/comments'),
+      this.api.concat('/posts/comments/create'),
       comments,
       {
         params,
       },
+    );
+  }
+
+  getAllCommmentsByPost(postId: number): Observable<CommentSection[]> {
+    return this.http.get<CommentSection[]>(
+      this.api + `/posts/comments/${postId}`,
+      this.httpOptions,
     );
   }
 }

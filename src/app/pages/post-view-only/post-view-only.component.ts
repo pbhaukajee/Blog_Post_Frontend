@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PostData } from '../models/post-data';
 import { PostService } from '../../services/post.service';
+import { CommentSection } from '../models/comment-section';
+import { CommentService } from '../../services/comment.service';
 
 @Component({
   selector: 'app-post-view-only',
@@ -14,15 +16,31 @@ import { PostService } from '../../services/post.service';
 export class PostViewOnlyComponent implements OnInit {
   postId: number;
   postData: PostData;
+  commentList: CommentSection[] = [];
 
   constructor(
     private postService: PostService,
     private route: ActivatedRoute,
+    private commentService: CommentService,
   ) {}
 
   ngOnInit(): void {
     this.postId = parseInt(this.route.snapshot.paramMap.get('id')) || 0;
     this.getPostById();
+    this.getCommentsByPost();
+  }
+
+  getCommentsByPost() {
+    if (this.postId) {
+      this.commentService.getAllCommmentsByPost(this.postId).subscribe(
+        (commentList: CommentSection[]) => {
+          this.commentList = commentList;
+        },
+        (error) => {
+          console.error('Something went wrong:', error);
+        },
+      );
+    }
   }
 
   getPostById() {
@@ -31,6 +49,7 @@ export class PostViewOnlyComponent implements OnInit {
         .getPostById(this.postId)
         .subscribe((postData: PostData) => {
           this.postData = postData;
+          this.getCommentsByPost();
         });
     }
   }

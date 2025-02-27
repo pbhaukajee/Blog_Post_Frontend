@@ -11,6 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommentService } from '../../services/comment.service';
+import { CommentSection } from '../models/comment-section';
 
 @Component({
   selector: 'app-individual-post',
@@ -23,6 +24,7 @@ export class IndividualPostComponent implements OnInit {
   postId: number;
   postData: PostData;
   commentsForm: FormGroup;
+  commentList: CommentSection[] = [];
 
   constructor(
     private postService: PostService,
@@ -34,6 +36,7 @@ export class IndividualPostComponent implements OnInit {
   ngOnInit(): void {
     this.postId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.getPostById();
+    this.getCommentsByPost();
 
     this.commentsForm = this.formBuilder.group({
       postedBy: [null, Validators.required],
@@ -47,6 +50,10 @@ export class IndividualPostComponent implements OnInit {
       (result) => {
         console.log(result);
         alert('Comment posted successfully!');
+
+        this.commentsForm.reset();
+
+        this.getCommentsByPost();
       },
       (error) => {
         console.error('Error posting comment:', error);
@@ -55,13 +62,28 @@ export class IndividualPostComponent implements OnInit {
     );
   }
 
+  getCommentsByPost() {
+    this.commentService.getAllCommmentsByPost(this.postId).subscribe(
+      (commentList: CommentSection[]) => {
+        this.commentList = commentList;
+      },
+      (error) => {
+        console.error('Something went wrong:', error);
+      },
+    );
+  }
+
   getPostById() {
     if (this.postId) {
-      this.postService
-        .getPostById(this.postId)
-        .subscribe((postData: PostData) => {
+      this.postService.getPostById(this.postId).subscribe(
+        (postData: PostData) => {
           this.postData = postData;
-        });
+          this.getCommentsByPost();
+        },
+        (error) => {
+          console.error('Something went wrong:', error);
+        },
+      );
     }
   }
 
