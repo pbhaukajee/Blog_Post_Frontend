@@ -4,14 +4,25 @@
     <input type="text" id="title" formControlName="title" />
     <br /><br />
     <label>Content</label>
-    <textarea type="text" id="content" formControlName="content"></textarea>
+    <textarea
+      type="text"
+      id="content"
+      formControlName="content"
+      rows="5"
+    ></textarea>
     <br /><br />
-    <label>Upload Image</label>
-    <input type="text" id="img" formControlName="img" />
-    <br /><br />
+    <!-- <label>Upload Image</label>
+    <input
+      type="file"
+      id="img"
+      formControlName="img"
+      (change)="onFileSelected($event)"
+    /> -->
     <label>Posted By</label>
     <input type="text" id="postedBy" formControlName="postedBy" />
     <br /><br />
     <button [disabled]="newPostForm.invalid" (click)="savePost()">Save</button>
   </form>
+  <br />
+  <button routerLink="/posts">Cancel</button>
 </div>

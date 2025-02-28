@@ -1,0 +1,30 @@
+.flex {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-btn {
+  justify-self: flex-start;
+}
+
+.btn-grey {
+  background-color: rgb(242, 239, 239);
+}
+
+.btn-salmon {
+  background-color: darksalmon;
+}
+
+.btn-flex {
+  display: flex;
+}
+
+.flex-nav {
+  gap: 15px;
+}
+
+.container {
+  margin-top: 20px;
+}

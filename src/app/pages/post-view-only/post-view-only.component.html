@@ -1,6 +1,6 @@
 <button routerLink="/">View All Posts</button>
 <div *ngIf="postData">
-  <div>image: {{ postData.img }}</div>
+  <!-- <div>image: {{ postData.img }}</div> -->
   <h3>{{ postData.title }}</h3>
   <p>{{ postData.content }}</p>
   <p>{{ postData.postedBy }}</p>
@@ -17,8 +17,9 @@
 <div>
   <h4>Comments</h4>
   <div *ngFor="let comment of commentList">
-    <p>{{ comment.comment }}</p>
-    <p>{{ comment.postedBy }}</p>
+    <p>
+      {{ comment.comment }}<br /><span> - {{ comment.postedBy }}</span>
+    </p>
   </div>
   <br />
   <br />

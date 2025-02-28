@@ -6,10 +6,12 @@
 </div>
 
 <div *ngIf="postData">
-  <div>image: {{ postData.img }}</div>
+  <!-- <div>image: {{ postData.img }}</div> -->
   <h3>{{ postData.title }}</h3>
   <p>{{ postData.content }}</p>
-  <p>{{ postData.postedBy }}</p>
+  <p>
+    <span>- Posted By</span><span> {{ postData.postedBy }}</span>
+  </p>
   <div>{{ postData.date }}</div>
   <div>
     <button (click)="likePost()">{{ postData.likeCount }} likes</button>
@@ -23,9 +25,10 @@
 <div>
   <h4>Comments</h4>
   <div *ngFor="let comment of commentList">
-    <p>{{ comment.comment }}</p>
-    <p>{{ comment.postedBy }}</p>
-    <button>Delete</button>
+    <p>
+      {{ comment.comment
+      }}<span style="margin-left: 5px"> -{{ comment.postedBy }}</span>
+    </p>
   </div>
   <br />
   <br />

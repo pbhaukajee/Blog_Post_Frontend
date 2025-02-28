@@ -6,14 +6,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { PostData } from '../models/post-data';
 
 @Component({
   selector: 'app-new-post-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './new-post-form.component.html',
   styleUrl: './new-post-form.component.scss',
 })
@@ -32,7 +32,6 @@ export class NewPostFormComponent implements OnInit {
       title: ['', Validators.required],
       content: ['', [Validators.required, Validators.maxLength(5000)]],
       postedBy: ['', Validators.required],
-      img: ['', Validators.required],
     });
 
     //Add particular post data in the form
