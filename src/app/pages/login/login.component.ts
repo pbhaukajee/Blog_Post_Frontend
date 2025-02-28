@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../models/user';
 
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     const user = this.loginForm.value;
     this.userService.login(user).subscribe((user: User) => {
       if (user.id) {
-        alert('login success');
+        this.router.navigate(['/posts']);
       } else {
         alert('Invalid username or password');
       }
