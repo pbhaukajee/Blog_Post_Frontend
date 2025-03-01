@@ -9,11 +9,12 @@ import {
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { PostData } from '../models/post-data';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-new-post-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [FormsModule, ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './new-post-form.component.html',
   styleUrl: './new-post-form.component.scss',
 })

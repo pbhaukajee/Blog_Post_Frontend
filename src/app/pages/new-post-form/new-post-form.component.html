@@ -1,28 +1,69 @@
-<div class="blog-form">
+<div class="container">
   <form [formGroup]="newPostForm">
-    <label>Blog Title</label>
-    <input type="text" id="title" formControlName="title" />
-    <br /><br />
-    <label>Content</label>
-    <textarea
-      type="text"
-      id="content"
-      formControlName="content"
-      rows="5"
-    ></textarea>
-    <br /><br />
-    <!-- <label>Upload Image</label>
-    <input
-      type="file"
-      id="img"
-      formControlName="img"
-      (change)="onFileSelected($event)"
-    /> -->
-    <label>Posted By</label>
-    <input type="text" id="postedBy" formControlName="postedBy" />
-    <br /><br />
-    <button [disabled]="newPostForm.invalid" (click)="savePost()">Save</button>
+    <div class="form-group">
+      <label>Blog Title</label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="form-control"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          newPostForm.get('title').errors?.['required'] &&
+          newPostForm.get('title')?.touched
+        "
+      >
+        Please provide the title
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Content</label>
+      <textarea
+        type="text"
+        id="content"
+        formControlName="content"
+        rows="20"
+        class="form-control"
+      ></textarea>
+      <div
+        class="text-danger"
+        *ngIf="
+          newPostForm.get('content').errors?.['required'] &&
+          newPostForm.get('content')?.touched
+        "
+      >
+        Please provide some content
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Posted By</label>
+      <input
+        type="text"
+        id="postedBy"
+        formControlName="postedBy"
+        class="form-control"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          newPostForm.get('postedBy').errors?.['required'] &&
+          newPostForm.get('postedBy')?.touched
+        "
+      >
+        Please provide the blogger's name
+      </div>
+    </div>
+    <div class="button">
+      <button
+        [disabled]="newPostForm.invalid"
+        (click)="savePost()"
+        class="btn btn-success"
+      >
+        Save
+      </button>
+      <button routerLink="/posts" class="btn btn-danger">Cancel</button>
+    </div>
   </form>
-  <br />
-  <button routerLink="/posts">Cancel</button>
 </div>
