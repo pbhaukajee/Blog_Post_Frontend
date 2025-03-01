@@ -14,6 +14,15 @@
           formControlName="fullName"
           class="form-control"
         />
+        <div
+          class="text-danger"
+          *ngIf="
+            signUpForm.get('fullName').errors?.['required'] &&
+            signUpForm.get('fullName')?.touched
+          "
+        >
+          Please provide full name
+        </div>
       </div>
       <div class="form-group">
         <label for="userName">Username </label>
@@ -25,6 +34,15 @@
           formControlName="userName"
           class="form-control"
         />
+        <div
+          class="text-danger"
+          *ngIf="
+            signUpForm.get('userName').errors?.['required'] &&
+            signUpForm.get('userName')?.touched
+          "
+        >
+          Please provide username
+        </div>
       </div>
       <div class="form-group">
         <label for="password">Password </label>
@@ -36,6 +54,15 @@
           formControlName="password"
           class="form-control"
         />
+        <div
+          class="text-danger"
+          *ngIf="
+            signUpForm.get('password').errors?.['required'] &&
+            signUpForm.get('password')?.touched
+          "
+        >
+          Please provide password
+        </div>
       </div>
       <button class="btn btn-primary" type="submit">Sign Up</button>
     </form>

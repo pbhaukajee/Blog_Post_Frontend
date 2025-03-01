@@ -10,8 +10,17 @@
         class="form-control"
         placeholder="Username"
       />
+      <div
+        class="text-danger"
+        *ngIf="
+          loginForm.get('userName').errors?.['required'] &&
+          loginForm.get('userName')?.touched
+        "
+      >
+        Please provide username
+      </div>
     </div>
-    <br />
+
     <div class="form-group">
       <label for="password">Password</label>
       <input
@@ -22,10 +31,17 @@
         class="form-control"
         placeholder="Password"
       />
+      <div
+        class="text-danger"
+        *ngIf="
+          loginForm.get('password').errors?.['required'] &&
+          loginForm.get('password')?.touched
+        "
+      >
+        Please provide password
+      </div>
     </div>
 
-    <br />
-    <br />
     <button type="submit" class="btn btn-success">Login</button>
 
     <button

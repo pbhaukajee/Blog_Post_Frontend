@@ -8,11 +8,12 @@ import {
 } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [FormsModule, ReactiveFormsModule, RouterModule, CommonModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
 })
