@@ -25,7 +25,7 @@
           }}
         </p>
         <p>
-          <em>
+          <em class="capitalize">
             - Posted by {{ post.postedBy }} ({{
               post.date | date: "MMMM d, y"
             }})</em
@@ -46,12 +46,13 @@
         </div>
         <br />
         <button
-          routerLink="/post-view-only/{{ post.id }}"
+          routerLink="/individual-post/{{ post.id }}"
           class="btn btn-salmon"
         >
           View Post
         </button>
       </div>
     </div>
+    <br />
   </div>
 </div>

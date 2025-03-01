@@ -1,26 +1,50 @@
-<button routerLink="/">View All Posts</button>
-<div *ngIf="postData">
-  <!-- <div>image: {{ postData.img }}</div> -->
-  <h3>{{ postData.title }}</h3>
-  <p>{{ postData.content }}</p>
-  <p>{{ postData.postedBy }}</p>
-  <div>{{ postData.date }}</div>
-  <div>
-    <button>{{ postData.likeCount }} likes</button>
-    <button>{{ postData.viewCount }} views</button>
+<div class="jumbotron text-center"><h1>Blog Post</h1></div>
+<div class="container">
+  <button routerLink="/" class="btn btn-view">⬅️ View All Posts</button>
+
+  <div *ngIf="postData" class="post-data card">
+    <!-- <div>image: {{ postData.img }}</div> -->
+    <h3 class="card-header text-center">{{ postData.title }}</h3>
+    <p class="card-text text-start">{{ postData.content }}</p>
+    <div class="card-footer text-muted text-end">
+      <em class="capitalize">
+        - Posted by {{ postData.postedBy }} ({{
+          postData.date | date: "MMMM d, y"
+        }})</em
+      >
+    </div>
+  </div>
+  <br />
+
+  <div class="flex flex-btn">
+    <button class="btn btn-grey btn-flex">
+      <span> {{ postData.likeCount }} likes&nbsp;</span>
+      <img src="/icons/like.png" alt="Icon" class="icon" />
+    </button>
+    <button class="btn btn-grey">
+      {{ postData.viewCount }} views&nbsp;<img
+        src="/icons/view.png"
+        alt="Icon"
+        class="icon"
+      />
+    </button>
   </div>
 
   <br />
   <br />
-</div>
 
-<div>
-  <h4>Comments</h4>
-  <div *ngFor="let comment of commentList">
-    <p>
-      {{ comment.comment }}<br /><span> - {{ comment.postedBy }}</span>
-    </p>
+  <div class="comments">
+    <h4>Comments</h4>
+    <div *ngFor="let comment of commentList" class="card">
+      <p class="card-body">
+        {{ comment.comment }}
+      </p>
+      <footer class="capitalize blockquote-footer">
+        <em> {{ comment.postedBy }}</em>
+      </footer>
+    </div>
+
+    <br />
+    <br />
   </div>
-  <br />
-  <br />
 </div>

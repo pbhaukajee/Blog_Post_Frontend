@@ -1,0 +1,36 @@
+.flex {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-btn {
+  justify-self: flex-start;
+}
+
+.btn-flex {
+  display: flex;
+}
+
+.btn-grey {
+  background-color: rgb(242, 239, 239);
+}
+
+.btn-view {
+  background-color: SandyBrown;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.card-text {
+  padding: 10px;
+}
+
+.blockquote-footer {
+  margin-left: 15px;
+}

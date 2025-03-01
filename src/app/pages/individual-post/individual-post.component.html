@@ -1,47 +1,72 @@
-<button routerLink="/posts">View all posts</button> <br />
-<br />
-<div>
-  <button routerLink="/update/{{ postId }}">Update Post</button>
-  <button (click)="deletePost(postId)">Delete post</button>
-</div>
+<div class="jumbotron text-center"><h1>Blog Post</h1></div>
+<div class="container">
+  <div class="flex-post">
+    <button routerLink="/posts" class="btn btn-view">⬅️ View All Posts</button>
+    <br />
+    <br />
+    <div class="flex-right">
+      <button class="btn btn-warning" routerLink="/update/{{ postId }}">
+        Update Post
+      </button>
+      <button class="btn btn-danger" (click)="deletePost(postId)">
+        Delete Post
+      </button>
+    </div>
+  </div>
 
-<div *ngIf="postData">
-  <!-- <div>image: {{ postData.img }}</div> -->
-  <h3>{{ postData.title }}</h3>
-  <p>{{ postData.content }}</p>
-  <p>
-    <span>- Posted By</span><span> {{ postData.postedBy }}</span>
-  </p>
-  <div>{{ postData.date }}</div>
-  <div>
-    <button (click)="likePost()">{{ postData.likeCount }} likes</button>
-    <button>{{ postData.viewCount }} views</button>
+  <div *ngIf="postData" class="post-data card">
+    <!-- <div>image: {{ postData.img }}</div> -->
+    <h3 class="card-header text-center">{{ postData.title }}</h3>
+    <p class="card-text text-start">{{ postData.content }}</p>
+    <div class="card-footer text-muted text-end">
+      <em class="capitalize">
+        - Posted by {{ postData.postedBy }} ({{
+          postData.date | date: "MMMM d, y"
+        }})</em
+      >
+    </div>
   </div>
 
   <br />
-  <br />
-</div>
-
-<div>
-  <h4>Comments</h4>
-  <div *ngFor="let comment of commentList">
-    <p>
-      {{ comment.comment
-      }}<span style="margin-left: 5px"> -{{ comment.postedBy }}</span>
-    </p>
+  <div class="flex flex-btn">
+    <button class="btn btn-grey btn-flex" (click)="likePost()">
+      <span> {{ postData.likeCount }} likes&nbsp;</span>
+      <img src="/icons/like.png" alt="Icon" class="icon" />
+    </button>
+    <button class="btn btn-grey">
+      {{ postData.viewCount }} views&nbsp;<img
+        src="/icons/view.png"
+        alt="Icon"
+        class="icon"
+      />
+    </button>
   </div>
   <br />
   <br />
-  <button>Delete</button>
   <div>
-    <form [formGroup]="commentsForm">
-      <label>Comment</label>
-      <textarea formControlName="comment"></textarea>
-      <br />
-      <label>Posted By</label>
-      <input formControlName="postedBy" />
-      <br />
-      <button (click)="postComment()">Post</button>
-    </form>
+    <div>
+      <form [formGroup]="commentsForm">
+        <label>Comment</label>
+        <textarea formControlName="comment"></textarea>
+        <br />
+        <label>Posted By</label>
+        <input formControlName="postedBy" />
+        <br />
+        <button class="btn btn-primary" (click)="postComment()">Post</button>
+      </form>
+    </div>
+    <br />
+    <h4>Comments</h4>
+
+    <div *ngFor="let comment of commentList" class="card">
+      <p class="card-body">
+        {{ comment.comment }}
+      </p>
+      <footer class="capitalize blockquote-footer">
+        <em> {{ comment.postedBy }}</em>
+      </footer>
+    </div>
+    <br />
+    <br />
   </div>
 </div>

@@ -1,23 +1,57 @@
-<div>
-  <label>Search by Title</label>
-  <input [(ngModel)]="title" />
-  <button (click)="searchPostByTitle()">Search</button>
-</div>
-<div *ngIf="searchPerformed && noPostsFound">
-  <p>No post found!!</p>
-</div>
-
-<div *ngFor="let post of postData">
-  <!-- <div>image: {{ post.img }}</div> -->
-  <h3>{{ post.title }}</h3>
-  <p>{{ post.content }}</p>
-  <p>{{ post.postedBy }}</p>
-  <div>{{ post.date }}</div>
-  <div>
-    <button>{{ post.likeCount }} likes</button>
-    <button>{{ post.viewCount }} views</button>
+<div class="container">
+  <button routerLink="/posts" class="btn btn-view">⬅️ View All Posts</button>
+  <div class="search text-center">
+    <label>Search by Title</label>
+    <input [(ngModel)]="title" />
+    <button (click)="searchPostByTitle()">🔍 Search</button>
   </div>
-  <button routerLink="/individual-post/{{ post.id }}">View Post</button>
-  <br />
-  <br />
+  <div class="post">
+    <div *ngIf="searchPerformed && noPostsFound">
+      <p>No post found!!</p>
+    </div>
+
+    <div *ngFor="let post of postData">
+      <!-- <div>image: {{ post.img }}</div> -->
+      <div class="card">
+        <h3 class="card-header">{{ post.title }}</h3>
+        <div class="card-body">
+          <p class="card-text">
+            {{
+              post.content.length > 600
+                ? post.content.substr(0, 600) + "..."
+                : post.content
+            }}
+          </p>
+          <p>
+            <em class="capitalize">
+              - Posted by {{ post.postedBy }} ({{
+                post.date | date: "MMMM d, y"
+              }})</em
+            >
+          </p>
+          <div class="flex flex-btn">
+            <button class="btn btn-grey btn-flex">
+              <span> {{ post.likeCount }} likes&nbsp;</span>
+              <img src="/icons/like.png" alt="Icon" class="icon" />
+            </button>
+            <button class="btn btn-grey">
+              {{ post.viewCount }} views&nbsp;<img
+                src="/icons/view.png"
+                alt="Icon"
+                class="icon"
+              />
+            </button>
+          </div>
+          <br />
+          <button
+            routerLink="/individual-post/{{ post.id }}"
+            class="btn btn-salmon"
+          >
+            View Post
+          </button>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
 </div>
