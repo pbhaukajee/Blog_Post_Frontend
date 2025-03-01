@@ -48,8 +48,8 @@ export class IndividualPostComponent implements OnInit {
 
   postComment() {
     const comments = this.commentsForm.value;
-    if (!comments.comment) {
-      alert('Please provide a comment before posting!');
+    if (!comments.comment || !comments.postedBy) {
+      alert('Please provide full information before posting!');
     } else {
       this.commentService.createComment(this.postId, comments).subscribe(
         (result) => {
