@@ -3,7 +3,7 @@
 }
 
 .search {
-  margin: auto 0;
+  border-radius: 5px;
 }
 
 .btn-grey {
@@ -44,4 +44,12 @@
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.form-flex {
+  display: flex;
+}
+
+.form-group {
+  margin-top: 20px;
 }
