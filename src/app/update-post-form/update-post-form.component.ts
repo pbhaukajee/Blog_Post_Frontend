@@ -7,19 +7,19 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { PostService } from '../../services/post.service';
-import { PostData } from '../models/post-data';
+import { PostService } from '../services/post.service';
+import { PostData } from '../pages/models/post-data';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-new-post-form',
+  selector: 'app-update-post-form',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, RouterLink, CommonModule],
-  templateUrl: './new-post-form.component.html',
-  styleUrl: './new-post-form.component.scss',
+  templateUrl: './update-post-form.component.html',
+  styleUrl: './update-post-form.component.scss',
 })
-export class NewPostFormComponent implements OnInit {
-  newPostForm: FormGroup;
+export class UpdatePostFormComponent implements OnInit {
+  updatePostForm: FormGroup;
   postId: number;
 
   constructor(
@@ -29,7 +29,7 @@ export class NewPostFormComponent implements OnInit {
     private route: ActivatedRoute,
   ) {}
   ngOnInit(): void {
-    this.newPostForm = this.formBuilder.group({
+    this.updatePostForm = this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', [Validators.required, Validators.maxLength(5000)]],
       postedBy: ['', Validators.required],
@@ -39,16 +39,16 @@ export class NewPostFormComponent implements OnInit {
     this.postId = parseInt(this.route.snapshot.paramMap.get('id'));
     if (this.postId) {
       this.postService.getPostById(this.postId).subscribe((post: PostData) => {
-        this.newPostForm.patchValue(post);
+        this.updatePostForm.patchValue(post);
       });
     }
   }
 
   savePost() {
-    if (this.newPostForm.invalid) {
+    if (this.updatePostForm.invalid) {
       return;
     }
-    const post = this.newPostForm.value;
+    const post = this.updatePostForm.value;
     if (this.postId) {
       this.postService
         .updatePost(this.postId, post)

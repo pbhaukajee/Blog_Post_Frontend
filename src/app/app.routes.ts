@@ -8,6 +8,7 @@ import { IndividualPostComponent } from './pages/individual-post/individual-post
 import { PostViewOnlyComponent } from './pages/post-view-only/post-view-only.component';
 import { SearchByTitleComponent } from './pages/search-by-title/search-by-title.component';
 import { SearchByTitleViewOnlyComponent } from './pages/search-by-title-view-only/search-by-title-view-only.component';
+import { UpdatePostFormComponent } from './update-post-form/update-post-form.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -15,7 +16,7 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'posts', component: PostListComponent },
   { path: 'new-post-form', component: NewPostFormComponent },
-  { path: 'update/:id', component: NewPostFormComponent },
+  { path: 'update/:id', component: UpdatePostFormComponent },
   { path: 'individual-post/:id', component: IndividualPostComponent },
 
   { path: 'post-view-only/:id', component: PostViewOnlyComponent },

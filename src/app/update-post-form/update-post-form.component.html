@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="newPostForm">
+  <form [formGroup]="updatePostForm">
     <div class="form-group">
       <label>Blog Title</label>
       <input
@@ -11,8 +11,8 @@
       <div
         class="text-danger"
         *ngIf="
-          newPostForm.get('title').errors?.['required'] &&
-          newPostForm.get('title')?.touched
+          updatePostForm.get('title').errors?.['required'] &&
+          updatePostForm.get('title')?.touched
         "
       >
         Please provide the title
@@ -30,8 +30,8 @@
       <div
         class="text-danger"
         *ngIf="
-          newPostForm.get('content').errors?.['required'] &&
-          newPostForm.get('content')?.touched
+          updatePostForm.get('content').errors?.['required'] &&
+          updatePostForm.get('content')?.touched
         "
       >
         Please provide some content
@@ -48,8 +48,8 @@
       <div
         class="text-danger"
         *ngIf="
-          newPostForm.get('postedBy').errors?.['required'] &&
-          newPostForm.get('postedBy')?.touched
+          updatePostForm.get('postedBy').errors?.['required'] &&
+          updatePostForm.get('postedBy')?.touched
         "
       >
         Please provide the blogger's name
@@ -57,13 +57,15 @@
     </div>
     <div class="button">
       <button
-        [disabled]="newPostForm.invalid"
+        [disabled]="updatePostForm.invalid"
         (click)="savePost()"
         class="btn btn-success"
       >
         Save
       </button>
-      <button routerLink="/posts" class="btn btn-danger">Cancel</button>
+      <button routerLink="/individual-post/{{ postId }}" class="btn btn-danger">
+        Cancel
+      </button>
     </div>
   </form>
 </div>
