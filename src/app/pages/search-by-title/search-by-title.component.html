@@ -6,6 +6,7 @@
         [(ngModel)]="title"
         class="form-control w-75"
         placeholder="Search post"
+        (keydown.enter)="searchPostByTitle()"
       />
       <button class="search" (click)="searchPostByTitle()">🔍 Search</button>
     </div>

@@ -1,15 +1,19 @@
 <div class="container">
   <button routerLink="/posts" class="btn btn-view">⬅️ View All Posts</button>
-
-  <div class="search text-center">
-    <label>Search by Title</label>
-    <input [(ngModel)]="title" />
-    <button (click)="searchPostByTitle()">🔍 Search</button>
+  <div class="form-group">
+    <div class="form-flex">
+      <input
+        [(ngModel)]="title"
+        class="form-control w-75"
+        placeholder="Search post"
+        (keydown.enter)="searchPostByTitle()"
+      />
+      <button class="search" (click)="searchPostByTitle()">🔍 Search</button>
+    </div>
   </div>
-
   <div class="post">
     <div *ngIf="searchPerformed && noPostFound">
-      <p>No post found!!</p>
+      <p><em>No post found!!</em></p>
     </div>
 
     <div *ngFor="let post of postData">
